@@ -65,8 +65,25 @@ describe ConnectFour do
     end
 
     it 'wins diagonally top-left to bottom-right' do
+      connect_four_win.move('x', 3)
+
+      connect_four_win.move('o', 2)
+      connect_four_win.move('x', 2)
       
+      connect_four_win.move('x', 1)
+      connect_four_win.move('x', 1)
+      connect_four_win.move('x', 1)
+      
+      connect_four_win.move('o', 0)
+      connect_four_win.move('o', 0)
+      connect_four_win.move('x', 0)
+      connect_four_win.move('x', 0)
+
+      connect_four_win.show_grid
+
+      expect(connect_four_win).to be_win
     end
   end
+  
   
 end

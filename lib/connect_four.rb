@@ -2,14 +2,44 @@ class ConnectFour
 
   def initialize
 
-    @array = Array.new(7) { Array.new(6)}
+    @array = Array.new(7) { Array.new(6) }
 
     
   end
 
   def play
-    
+    player_number = 1
+    until win? || board_full?
+      puts "Player #{player_number} make your move (choose column between 1 to 7):"
+      show_grid
+      
+      column = ''
+      loop do
+        column = gets.chomp
+        if !column.to_i.between?(1,7) || column_full?(column.to_i - 1)
+          puts "Wrong input!" 
+        else
+          break
+        end
+      end
+      
+      move('x', column.to_i - 1) if player_number == 1
+      move('o', column.to_i - 1 ) if player_number == 2
 
+      if win?
+        return puts "Player #{player_number} wins!"
+      end
+
+      player_number = player_number == 1 ? 2 : 1
+    end
+    puts "Tie!"
+  end
+
+  def board_full?
+    @array.each do |column|
+      return false if column.compact.size < 6
+    end
+    true
   end
 
   def win?
@@ -85,19 +115,17 @@ class ConnectFour
   end
 
   def show_grid
-    puts ''
-    6.downto(0) do |i|
+    # Iterate from top row (index 5) to bottom row (index 0)
+    (5).downto(0) do |row_index|
       row = ""
-      0.upto(5) do |j|
-        value = @array[i][j]
-        value = "-" if @array[i][j].nil?
+      # Iterate over each column (from 0 to 6) to get the value in the current row
+      (0).upto(6) do |col_index|
+        value = @array[col_index][row_index] || "-"
         row = row.concat(value, " ")
       end
       puts row
     end
+    puts ""
   end
 
 end
-
-
-
