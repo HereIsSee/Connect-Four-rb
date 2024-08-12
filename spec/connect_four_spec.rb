@@ -1,9 +1,8 @@
 require './lib/connect_four'
 
 describe ConnectFour do
-  
   describe '#move' do
-  subject(:connect_four) { described_class.new }
+    subject(:connect_four) { described_class.new }
 
     it 'makes first move x in column 3' do
       column = connect_four.move('x', 3)
@@ -14,11 +13,9 @@ describe ConnectFour do
     it 'makes second move o in column 3' do
       connect_four.move('x', 3)
       column = connect_four.move('o', 3)
-      
 
       expect(column[1]).to eq('o')
     end
-  
   end
 
   describe '#win?' do
@@ -49,11 +46,11 @@ describe ConnectFour do
 
       connect_four_win.move('o', 1)
       connect_four_win.move('x', 1)
-      
+
       connect_four_win.move('x', 2)
       connect_four_win.move('x', 2)
       connect_four_win.move('x', 2)
-      
+
       connect_four_win.move('o', 3)
       connect_four_win.move('o', 3)
       connect_four_win.move('x', 3)
@@ -69,11 +66,11 @@ describe ConnectFour do
 
       connect_four_win.move('o', 2)
       connect_four_win.move('x', 2)
-      
+
       connect_four_win.move('x', 1)
       connect_four_win.move('x', 1)
       connect_four_win.move('x', 1)
-      
+
       connect_four_win.move('o', 0)
       connect_four_win.move('o', 0)
       connect_four_win.move('x', 0)
@@ -84,6 +81,4 @@ describe ConnectFour do
       expect(connect_four_win).to be_win
     end
   end
-  
-  
 end
